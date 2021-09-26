@@ -1,29 +1,27 @@
-const { DataTypes } = require("sequelize/types")
-const { underscoredIf } = require("sequelize/types/lib/utils")
 
-module.exports = (sequelize, dataTipes) => {
+module.exports = (sequelize, dataTypes) => {
 
     const alias = 'Genero'
 
     const cols = {
 
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: dataTypes.INTEGER.UNSIGNED,
             primaryKey: true,
             allowNull: false,
             autoIncrement: true   
         },
         name: {
-            type: DataTypes.STRING(100),
+            type: dataTypes.STRING(100),
             ALLOWNULL : false
         },
         ranking: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
             unique: true
         },
         active: {
-            type: DataTypes.BOOLEAN,
+            type: dataTypes.BOOLEAN,
             defaultValue: 1,
             allowNull: false
         }
@@ -31,10 +29,12 @@ module.exports = (sequelize, dataTipes) => {
     }
 
     const config = { 
-        underscored: true
+        tableName: 'genres',
+        underscored: true,
+        timestamps: true
     }
 
-    const Genre = this.sequelize.define(alias, cols, config)
+    const Genre = sequelize.define(alias, cols, config)
 
     return Genre
 
