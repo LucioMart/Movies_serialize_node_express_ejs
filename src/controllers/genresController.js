@@ -5,12 +5,19 @@ module.exports = {
 
         db.Genero.findAll()
         .then(generos => {
-            res.send(generos)
+            return res.render('genresList', {
+                generos
+            })
         })
         .catch(error => console.log(error))
-        
+
     },
     detalle: (req, res) => {
-
+        db.Genero.findByPk(req.params.id)
+        .then(genero => {
+            return res.render('genresDetail',{
+                genero
+            })
+        })
     }
 }
